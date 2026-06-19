@@ -189,9 +189,10 @@
         </div>
       </div>
 
-      <div class="grid-3">
+      <div class="grid-4">
         <div class="metric"><h3>Ohne Kürzung</h3><div class="value" id="ohneKuerzungGesamt"></div><div class="muted">Spardosen gesamt verfügbar</div></div>
         <div class="metric"><h3>Mit Kürzung</h3><div class="value success" id="mitKuerzungGesamt"></div><div class="muted">Spardosen mit reduziertem Satz</div></div>
+        <div class="metric"><h3>Vollentnahme netto</h3><div class="value warning" id="vollentnahmeMitAusschuettung"></div><div class="muted">Nach Ausschüttungsteuer</div></div>
         <div class="metric"><h3>Mehrwert Kürzung</h3><div class="value success" id="kuerzungMehrwert"></div><div class="muted">Zusätzlich verfügbar</div></div>
       </div>
 
@@ -212,6 +213,7 @@
               <tr><td>GmbH-Steuern</td><td id="mitKSt"></td></tr>
               <tr><td>GmbH-Darlehen</td><td id="mitDarlehen"></td></tr>
               <tr><td>Gesamt verfügbar</td><td id="mitGesamt"></td></tr>
+              <tr><td>Vollentnahme nach Ausschüttung</td><td id="mitVollentnahme"></td></tr>
             </table>
           </div>
         </div>
@@ -316,6 +318,7 @@
       const mit = calcBase(num('steuerMitKuerzung'));
       document.getElementById('ohneKuerzungGesamt').textContent = euro(basis.spardosenGesamt);
       document.getElementById('mitKuerzungGesamt').textContent = euro(mit.spardosenGesamt);
+      document.getElementById('vollentnahmeMitAusschuettung').textContent = euro(mit.vollGesamt);
       document.getElementById('kuerzungMehrwert').textContent = euro(mit.spardosenGesamt - basis.spardosenGesamt);
       document.getElementById('ohneKSt').textContent = euro(-basis.gmbhSteuern);
       document.getElementById('ohneDarlehen').textContent = euro(basis.gmbhNachSteuern);
@@ -323,6 +326,7 @@
       document.getElementById('mitKSt').textContent = euro(-mit.gmbhSteuern);
       document.getElementById('mitDarlehen').textContent = euro(mit.gmbhNachSteuern);
       document.getElementById('mitGesamt').textContent = euro(mit.spardosenGesamt);
+      document.getElementById('mitVollentnahme').textContent = euro(mit.vollGesamt);
     }
 
     function renderInterest() {
